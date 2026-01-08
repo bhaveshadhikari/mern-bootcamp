@@ -11,6 +11,9 @@ function Navbar() {
     setIsUserAuthenticated(true);
     console.log("User authenticated Value", isUserAuthenticated);
   };
+// fetch facebook Posts
+//facebook API KEY
+//FACEBOOKA_API_KEY -> using
 
   const renderAuthenticationScreen = () => {
     // computations
