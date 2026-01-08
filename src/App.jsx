@@ -11,9 +11,9 @@ function Navbar() {
     setIsUserAuthenticated(true);
     console.log("User authenticated Value", isUserAuthenticated);
   };
-// fetch facebook Posts
-//facebook API KEY
-//FACEBOOKA_API_KEY -> using
+  // fetch facebook Posts
+  //facebook API KEY
+  //FACEBOOKA_API_KEY -> using
 
   const renderAuthenticationScreen = () => {
     // computations
@@ -27,6 +27,13 @@ function Navbar() {
     } else {
       return <button className="navbar-button">Get Started</button>;
     }
+  };
+
+  const fetchHomeData = async () => {
+    try {
+      // API call
+      // Handles err
+    } catch (err) {}
   };
 
   return (
