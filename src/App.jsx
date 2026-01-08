@@ -32,6 +32,7 @@ function Navbar() {
   const fetchHomeData = async () => {
     try {
       // API call
+      let res = fetch("URL");
       // Handles err
     } catch (err) {}
   };
