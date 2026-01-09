@@ -1,5 +1,6 @@
 // Footer Section
 import React from "react";
+import { useState, useEffect } from "react";
 
 function Footer() {
   const [email, setEmail] = useState("");
