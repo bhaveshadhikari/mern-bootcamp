@@ -6,7 +6,7 @@ function Navbar() {
 
   const authenticatedUser = () => {
     setIsUserAuthenticated(true);
-    console.log("User authenticated Value", isUserAuthenticated);
+    console.log("User authenticated Value", isUserAuthenticated); 
   };
   // fetch facebook Posts
   //facebook API KEY
@@ -37,9 +37,9 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">SaaS Project</div>
       <div className="navbar-links">
-        <a href="#home" className="navbar-link">
+        <Link to={"/home"} classname="navbar-link">
           Home
-        </a>
+        </Link>
         <a href="#about" className="navbar-link">
           About Us
         </a>
