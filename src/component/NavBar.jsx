@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
 // Navbar Component
 function Navbar() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -42,24 +43,27 @@ function Navbar() {
         <a href="#about" className="navbar-link">
           About Us
         </a>
-        <a href="#team" className="navbar-link">
+        <Link to={"/team"} classname="navbar-link">
           Team
-        </a>
+        </Link>
         {/* User Clicks on Signin -> updates signin to "Get started" */}
-        {/* 
-          
-          {isUserAuthenticated ? (
-            <button className="navbar-button">Get Started</button>
-          ) : (
-            <button className="navbar-button-signin" onClick={authenticatedUser}>
+
+        {isUserAuthenticated ? (
+          <button className="navbar-button">Get Started</button>
+        ) : (
+          <Link to="/sign-in">
+            <button
+              className="navbar-button-signin"
+              // onClick={authenticatedUser}
+            >
               Sign In
             </button>
-          )} */}
-
+          </Link>
+        )}
         {/* {isUserAuthenticated && (
             <button className="navbar-button">Get Started</button>
-          )} */}
-
+          )}
+ */}
         {renderAuthenticationScreen()}
       </div>
     </nav>
