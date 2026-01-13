@@ -1,16 +1,20 @@
-import React from "react";
-// properties -> {title , backgroundColor, onPress}
-function Button(props) {
+function Button({ title, backgroundColor, type = "button", onPress }) {
   return (
-    <div
+    <button
+      type={type}
+      onClick={onPress}
       style={{
+        cursor: "pointer",
         borderRadius: 8,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: props.backgroundColor,
+        backgroundColor: backgroundColor,
         marginTop: 10,
-        padding: 5,
+        padding: "8px 16px",
+        color: "#fff",
+        border: "none",
+        userSelect: "none",
       }}
     >
       <span
@@ -20,10 +24,10 @@ function Button(props) {
           fontFamily: "cursive",
         }}
       >
-        {props.title}
+        {title}
       </span>
-    </div>
+    </button>
   );
 }
 
-export default Button;
+export default Button
