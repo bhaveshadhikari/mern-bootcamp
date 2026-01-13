@@ -37,14 +37,17 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">SaaS Project</div>
       <div className="navbar-links">
-        <Link to={"/home"} classname="navbar-link">
+        <Link to={"/home"} className="navbar-link">
           Home
         </Link>
         <a href="#about" className="navbar-link">
           About Us
         </a>
-        <Link to={"/team"} classname="navbar-link">
+        <Link to={"/team"} className="navbar-link">
           Team
+        </Link>
+        <Link to={"/contact"} className="navbar-link">
+          Contact
         </Link>
         {/* User Clicks on Signin -> updates signin to "Get started" */}
 
