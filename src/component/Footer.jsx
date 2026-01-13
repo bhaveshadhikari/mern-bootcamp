@@ -1,39 +1,9 @@
 // Footer Section
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 function Footer() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [contact, setContact] = useState("");
-  const [msg, setMsg] = useState("");
-
-  const handleOnChangeEmail = (e) => {
-    let emailValue = e.target.value;
-    setEmail(emailValue);
-  };
-  const handleOnChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleOnChangeContactDetails = (e) => {
-    let contactValue = e.target.value;
-    setContact(contactValue);
-  };
-
-  const handleOnChangeMsg = (e) => {
-    setMsg(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
-    // alert("Form Submitted");
-    console.log(e.target);
-    // email check
-    //message length > 10 ??
-    //contct Number isNumber()
-
-    // request call -> server save
-  };
 
   return (
     <footer className="footer">
@@ -79,41 +49,27 @@ function Footer() {
           </ul>
         </div>
 
-        <div>
-          <h2> Contact Us Form</h2>
-
-          <form className="footer-form" onSubmit={handleFormSubmit}>
-            <input
-              name="email"
-              placeholder="email"
-              className="form-input-field"
-              onChange={handleOnChangeEmail}
-              value={email}
-            />
-            <input
-              name="Password"
-              value={password}
-              placeholder="Password"
-              className="form-input-field"
-              onChange={handleOnChangePassword}
-              type={"password"}
-            />
-            <input
-              placeholder="Contact Details"
-              className="form-input-field"
-              onChange={handleOnChangeContactDetails}
-              value={contact}
-            />
-            <input
-              placeholder="Message"
-              className="form-input-field"
-              onChange={handleOnChangeMsg}
-              value={msg}
-              style={{ minHeight: 100 }}
-            />
-            <button>Submit</button>
-          </form>
+        <div className="footer-section">
+          <h4>Get Connected</h4>
+          <ul>
+            <li>
+              <a href="">Facebook</a>
+            </li>
+            <li>
+              <a href="">Twitter</a>
+            </li>
+            <li>
+              <a href="">Instagram</a>
+            </li>
+            <li>
+              <Link to={"/contact"}>
+                        Contact Form
+              </Link>
+            </li>
+          </ul>
         </div>
+
+        
       </div>
       <div className="footer-bottom">
         <p>&copy; 2024 SaaS Project. All rights reserved.</p>
