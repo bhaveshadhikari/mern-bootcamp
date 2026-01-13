@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
+import Button from "../component/Button.jsx";
 function ContactForm() {
 
     const [showForm, setShowForm] = useState(false);
@@ -30,7 +31,6 @@ function ContactForm() {
     return (
 
         <>
-            <Navbar />
             <div style={{ width: "100%", display:"flex", justifyContent: "center", alignItems:"center" }}>
 
 
@@ -50,7 +50,6 @@ function ContactForm() {
                     </form>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }

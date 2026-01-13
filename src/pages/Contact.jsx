@@ -6,7 +6,13 @@ import ContactForm from "../component/ContactForm.jsx";
 
 function Contact(){
     return(
+        <>
+        <Navbar/>
         <ContactForm/>
+        <Footer />
+        </>
+        
+        
     );
 }
 export default Contact;
