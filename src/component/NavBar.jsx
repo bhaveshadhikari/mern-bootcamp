@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 // Navbar Component
 function Navbar() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   const authenticatedUser = () => {
     setIsUserAuthenticated(true);
+
     console.log("User authenticated Value", isUserAuthenticated); 
+
   };
-  // fetch facebook Posts
-  //facebook API KEY
-  //FACEBOOKA_API_KEY -> using
 
   const renderAuthenticationScreen = () => {
     // computations
@@ -54,14 +54,9 @@ function Navbar() {
         {isUserAuthenticated ? (
           <button className="navbar-button">Get Started</button>
         ) : (
-          <Link to="/sign-in">
-            <button
-              className="navbar-button-signin"
-              // onClick={authenticatedUser}
-            >
-              Sign In
-            </button>
-          </Link>
+          <button className="navbar-button-signin" onClick={authenticatedUser}>
+            Sign In
+          </button>
         )}
         {/* {isUserAuthenticated && (
             <button className="navbar-button">Get Started</button>
