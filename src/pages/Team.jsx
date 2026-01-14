@@ -10,7 +10,7 @@ function Team() {
   return (
     <div>
       <Navbar />
-      <h1>Current Team ID: {teamId} </h1>
+      {teamId && <h1>Current Team ID: {teamId}</h1>}
       <AboutTeam />
     </div>
   );
