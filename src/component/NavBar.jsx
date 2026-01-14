@@ -37,12 +37,12 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">SaaS Project</div>
       <div className="navbar-links">
-        <Link to={"/home"} className="navbar-link">
+        <Link to={"/"} className="navbar-link">
           Home
         </Link>
-        <a href="#about" className="navbar-link">
+        <Link to={"/about"} className="navbar-link">
           About Us
-        </a>
+        </Link>
         <Link to={"/team"} className="navbar-link">
           Team
         </Link>
