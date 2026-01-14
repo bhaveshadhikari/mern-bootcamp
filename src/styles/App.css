@@ -204,10 +204,6 @@
 }
 
 .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
 }
 
 .about-text h3 {
@@ -225,8 +221,11 @@
 
 .about-features {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .feature-card {
@@ -243,6 +242,7 @@
 }
 
 .feature-icon {
+  max-width: 300px;
   font-size: 3rem;
   margin-bottom: 1rem;
 }
