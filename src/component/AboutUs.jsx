@@ -1,7 +1,39 @@
 // About Us Section
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 function AboutUs() {
+  const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
+
+  const fetchPosts = async () => {
+    setLoader(true);
+    try {
+      // api call
+      const res = await fetch("https://dummyjson.com/posts?limit=6");
+      const data = await res.json();
+      console.log(data);
+      setPosts(data.posts);
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    if (error) navigate("/error");
+  }, [error]);
+  // fetch data from api
+  // update the data in state
+
   return (
     <section id="about" className="about-us-section">
       <div className="section-container">
@@ -22,21 +54,15 @@ function AboutUs() {
             </p>
           </div>
           <div className="about-features">
-            <div className="feature-card">
-              <div className="feature-icon">🚀</div>
-              <h4>Innovation</h4>
-              <p>Pioneering the future of business technology</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🎯</div>
-              <h4>Focus</h4>
-              <p>Dedicated to solving real business problems</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">💡</div>
-              <h4>Excellence</h4>
-              <p>Committed to delivering quality solutions</p>
-            </div>
+            {posts &&
+              posts.length > 0 &&
+              posts.map((post, index) => (
+                <div className="feature-icon" key={index}>
+                  🚀
+                  <p style={{ fontSize: 12 }}>{post.title}</p>
+                  <p style={{ fontSize: 9 }}>{post.body}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>
