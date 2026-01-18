@@ -13,15 +13,10 @@ function LandingSection() {
 
       try {
         const response = await fetch("http://127.0.0.1:8080/widget/clock");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
         const html = await response.text();
         setClockWidget(html);
       } catch (err) {
-        setError(err.message || "Failed to load clock widget");
+        setError(true);
       } finally {
         setLoading(false);
       }
