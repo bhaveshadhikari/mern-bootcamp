@@ -16,7 +16,7 @@ function AboutUs() {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const res = await fetch("https://dummyjson.co/posts?limit=6");
+        const res = await fetch("https://dummyjson.com/posts?limit=6");
         const data = await res.json();
         setPosts(data.posts);
       } catch (err) {
