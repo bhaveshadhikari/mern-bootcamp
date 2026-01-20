@@ -51,18 +51,22 @@ function Navbar() {
         </Link>
         {/* User Clicks on Signin -> updates signin to "Get started" */}
 
-        {isUserAuthenticated ? (
+        {/* {isUserAuthenticated ? (
           <button className="navbar-button">Get Started</button>
         ) : (
           <button className="navbar-button-signin" onClick={authenticatedUser}>
             Sign In
           </button>
         )}
-        {/* {isUserAuthenticated && (
-            <button className="navbar-button">Get Started</button>
-          )}
- */}
-        {renderAuthenticationScreen()}
+        {
+          renderAuthenticationScreen()
+        } */}
+
+          <Link to={"/sign-in"} className="navbar-button">
+          Sign In
+        </Link>
+
+        
       </div>
     </nav>
   );
