@@ -13,6 +13,7 @@ function LandingSection() {
 
       try {
         const response = await fetch("http://127.0.0.1:8080/widget/clock");
+        
         const html = await response.text();
         setClockWidget(html);
       } catch (err) {
