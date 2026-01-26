@@ -13,5 +13,5 @@ app.use("/api", router)
 
 const PORT = 8000;
 app.listen(PORT, () => {
-    console.log("Server is running on PORT", PORT)
+    console.log("HEYA!! Server up and running at ", PORT)
 })
