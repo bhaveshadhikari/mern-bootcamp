@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
 const SECRETKEY = "HDGFJYVBY3ER7YTIUYVBETIUVBUYRI";
@@ -13,17 +14,32 @@ const loginController = async (req, res) => {
   }
 
   try {
-    // yeha chai database maa save garney
-    const newUser = new User({ username, password });
-    await newUser.save();
+    // find user
+    const user = await User.findOne({ username });
 
-    const token = jwt.sign({ username }, SECRETKEY);
+    if (!user) {
+      return res.status(401).send("User not found");
+    }
 
-    res.status(201).json({
-      message: "Saved to DB & Auth success!!",
+    // compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).send("Invalid credentials");
+    }
+
+    // generate token
+    const token = jwt.sign(
+      { userId: user._id, username: user.username },
+      SECRETKEY
+    );
+
+    res.status(200).json({
+      message: "Login success",
       token
     });
   } catch (err) {
+    console.error(err);
     res.status(500).send("Database error");
   }
 };
