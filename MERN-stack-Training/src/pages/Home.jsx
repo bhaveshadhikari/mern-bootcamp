@@ -6,6 +6,9 @@ import AboutTeam from "../component/AboutTeam";
 import Footer from "../component/Footer";
 
 function Home() {
+  const token = localStorage.getItem("token")
+  console.log("Token in localStorage --homepage", token)
+
   return (
     <>
       <Navbar />

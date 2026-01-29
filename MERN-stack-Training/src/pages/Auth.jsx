@@ -28,7 +28,9 @@ const Auth = () => {
       })
 
       const data = await res.json()
-      console.log("data", data)
+      await localStorage.setItem("token", data.token)
+
+      console.log("Stored token in localStorage", localStorage.getItem("token"))
       if (data.message === "Login succesfully") {
         navigate("/")
       }
