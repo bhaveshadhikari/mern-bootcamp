@@ -5,12 +5,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         minlength: 5,
-        maxlength: 30
     },
-    createdAt: Date.now(),
+    createdAt: { type: Date, default: Date.now() },
     username: {
         type: String,
-    }
+    },
+    token: String
 })
 
 const User = mongoose.model("user", userSchema);
