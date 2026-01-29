@@ -14,14 +14,15 @@ const LoginController = async (req, res, next) => {
             // some logic to check if the email and password is correct.
             let user = await userModel.findOne({ email: email })
             // if no user exists for that email
-            if (!user) res.status(400).send("User not found")
+            if (!user) return res.status(400).send("User not found")
 
             let isPasswordMatch = await bcrypt.compare(password, user.password)
-            if (!isPasswordMatch) res.status(400).send("Invalid password")
+            if (!isPasswordMatch) return res.status(400).send("Invalid password")
 
-            let token = jwt.sign({ email, password }, process.env.SECRET_KEY)
+            let token = jwt.sign({ email, id: user._id }, process.env.SECRET_KEY)
             user.token = token;
 
+            console.log("token", token)
             await user.save();
             res.status(200).send({ token: token, message: "Login succesfully" })
         } catch (err) {
