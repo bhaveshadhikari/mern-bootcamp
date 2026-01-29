@@ -1,15 +1,41 @@
 import React, { useState, useEffect } from "react";
 import Button from "../component/Button";
+import { useNavigate } from "react-router";
 
 const Auth = () => {
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     console.log("Form submitted")
+
     // API implementation for login
+    try {
+      const body = {
+        "email": email,
+        "password": password
+      }
+      console.log("body", body)
+      const res = await fetch("http://localhost:8000/api/auth/login", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body)
+      })
+
+      const data = await res.json()
+      console.log("data", data)
+      if (data.message === "Login succesfully") {
+        navigate("/")
+      }
+    } catch (err) {
+      console.log("Login failed", err)
+      setError("Login Failed!")
+    }
     // token store 
   };
 
@@ -46,9 +72,10 @@ const Auth = () => {
   return (
     <div style={{ height: "100vh", paddingTop: 100, backgroundColor: 'lightgray', padding: 10, borderRadius: 10 }}>
       <h1 style={{ textAlign: 'center', margin: 10, fontSize: 24 }}> Login</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center', }}>
+      <form style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center', }} onSubmit={handleSubmit}>
         <input
           type="email"
+          name="email"
           placeholder="Email"
           onChange={onChangeEmail}
           onBlur={handleOnBlurEmail}
@@ -57,6 +84,7 @@ const Auth = () => {
         />
         <input placeholder="Password"
           type="password"
+          name="password"
           onChange={onChangePassword}
           onBlur={handleOnBlurPassword}
           value={password}
