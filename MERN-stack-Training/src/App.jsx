@@ -2,6 +2,7 @@ import "./styles/App.css";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
 import Auth from "./pages/Auth";
+import SignUp from "./pages/SignUp"
 import TeamDetails from "./pages/TeamDetails";
 import { Routes, Route } from "react-router";
 
@@ -11,6 +12,7 @@ function App() {
       <Route path="/" element={<Home />} />
 
       <Route path="/auth/sign-in" element={<Auth />} />
+      <Route path="/auth/sign-up" element={<SignUp />} />
 
       {/* team nested route */}
       <Route path="team">
