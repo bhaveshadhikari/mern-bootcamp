@@ -13,7 +13,7 @@ app.use("/api", router)
 
 connectDB();
 
-const PORT = 8000;
+const PORT = 8080;
 app.listen(PORT, () => {
     console.log("HEYA!! Server up and running at ", PORT)
 })

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// import { navigate } from "react-router-dom";
 import Button from "../component/Button.jsx";
 
 function SigninForm() {
@@ -7,16 +8,42 @@ function SigninForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log({ name, email, password });
-        alert("Enquiry submitted!");
+        try{
+            const body = {
+                "username" : name,
+                "password":password
+            }
+            console.log("body", body)
 
-        setName("");
-        setEmail("");
-        setPassword("");
-        setError("");
+            const res = await fetch("http://localhost:8080/api/auth/login",{
+                method: "POST",
+                headers:{
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify(body)
+            })
+
+            const data = await res.json()
+            console.log("data", data)
+
+            if(data.message === "Login Successfully"){
+                // navigate("/")
+                alert("success!!")
+            }
+        }catch(err){
+            console.log("Login Failed ", err);
+            setError("Login Failed")
+        }
+        // console.log({ name, email, password });
+        // alert("Enquiry submitted!");
+
+        // setName("");
+        // setEmail("");
+        // setPassword("");
+        // setError("");
     };
 
     const handleOnBlurName = (e) => {
@@ -32,13 +59,13 @@ function SigninForm() {
     };
 
     const handleOnBlurPassword = (e) => {
-        if (e.target.value.length < 8) {
+        if (e.target.value.length < 5) {
             setError("Password must be at least 8 characters!");
         }
     };
 
     useEffect(() => {
-        if (name.length > 0 && email.includes("@") &&password.length >= 8) {
+        if (name.length > 0 && email.includes("@") &&password.length >= 5) {
             setError("");
         }
     }, [name, email, password]);
