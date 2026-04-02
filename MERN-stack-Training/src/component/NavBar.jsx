@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router";
 // Navbar Component
 function Navbar() {
-  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const isUserAuthenticated = Boolean(localStorage.getItem("token"));
 
   const authenticatedUser = () => {
-    setIsUserAuthenticated(true);
-    console.log("User authenticated Value", isUserAuthenticated);
     // some login or sign in logic and navigate
-    navigate("/sign-in");
+    navigate("/auth/sign-in");
   };
 
   const renderAuthenticationScreen = () => {
@@ -35,24 +33,36 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">SaaS Project</div>
-      <div className="navbar-links">
-        <a href="#home" className="navbar-link">
-          Home
-        </a>
-        <a href="#about" className="navbar-link">
-          About Us
-        </a>
-        <Link to={"/team"}>Team</Link>
+      <div className="navbar-inner">
+        <div className="navbar-brand">
+          <span className="navbar-brand-icon" aria-hidden="true">
+            ◆
+          </span>
+          <span className="navbar-brand-text">SaaS Project</span>
+        </div>
+        <div className="navbar-links">
+          <a href="#home" className="navbar-link">
+            Home
+          </a>
+          <a href="#about" className="navbar-link">
+            About Us
+          </a>
+          <Link className="navbar-link" to="/team">
+            Team
+          </Link>
+        </div>
         {/* User Clicks on Signin -> updates signin to "Get started" */}
-
-        {isUserAuthenticated ? (
-          <button className="navbar-button">Get Started</button>
-        ) : (
-          <button className="navbar-button-signin" onClick={authenticatedUser}>
-            Sign In
-          </button>
-        )}
+        <div className="navbar-actions">
+          {isUserAuthenticated ? (
+            <Link className="navbar-button" to="/dashboard">
+              Get Started
+            </Link>
+          ) : (
+            <button className="navbar-button-signin" onClick={authenticatedUser}>
+              Sign In
+            </button>
+          )}
+        </div>
         {/* {isUserAuthenticated && (
             <button className="navbar-button">Get Started</button>
           )}
