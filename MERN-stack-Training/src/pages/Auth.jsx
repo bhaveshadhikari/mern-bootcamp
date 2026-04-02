@@ -32,7 +32,7 @@ const Auth = () => {
 
       console.log("Stored token in localStorage", localStorage.getItem("token"))
       if (data.message === "Login succesfully") {
-        navigate("/")
+        navigate("/dashboard")
       }
     } catch (err) {
       console.log("Login failed", err)

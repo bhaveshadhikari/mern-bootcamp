@@ -4,7 +4,9 @@ import Team from "./pages/Team";
 import Auth from "./pages/Auth";
 import SignUp from "./pages/SignUp"
 import TeamDetails from "./pages/TeamDetails";
+import Dashboard from "./pages/Dashboard";
 import { Routes, Route } from "react-router";
+import PrivateRoute from "./component/PrivateRoute";
 
 function App() {
   return (
@@ -13,6 +15,15 @@ function App() {
 
       <Route path="/auth/sign-in" element={<Auth />} />
       <Route path="/auth/sign-up" element={<SignUp />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
 
       {/* team nested route */}
       <Route path="team">
