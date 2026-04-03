@@ -7,15 +7,15 @@ const SECRETKEY = "HDGFJYVBY3ER7YTIUYVBETIUVBUYRI";
 const loginController = async (req, res) => {
   console.log("login route:", req.body);
 
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(400).send("Cant be empty!!");
+  if (!email || !password) {
+    return res.status(400).send("Email and password are required");
   }
 
   try {
-    // find user
-    const user = await User.findOne({ username });
+    // find user by email
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).send("User not found");
@@ -30,7 +30,7 @@ const loginController = async (req, res) => {
 
     // generate token
     const token = jwt.sign(
-      { userId: user._id, username: user.username },
+      { userId: user._id, name: user.name, email: user.email },
       SECRETKEY
     );
 

@@ -5,6 +5,7 @@ import TeamDetails from "./pages/TeamDetails";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import NotFound404 from "./pages/NotFound404";
+import Dashboard from "./pages/Dashboard";
 import { Routes, Route } from "react-router";
 
 
@@ -21,6 +22,7 @@ function App() {
       
       <Route path="/contact" element={<Contact />} />
       <Route path="/sign-in" element={<Auth />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
       <Route path="/error" element = {<h1>Internal Error</h1>}/>
       <Route path="*" element = {<NotFound404 />}/>
