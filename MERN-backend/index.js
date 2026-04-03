@@ -1,7 +1,28 @@
 import express from 'express';
 import cors from 'cors';
 import router from './routes.js';
-import connectDB from './db.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config()
+
+const { DB_USERNAME, DB_PASSWORD } = process.env;
+const password = encodeURIComponent(DB_PASSWORD);
+// String literal
+const MONGO_URI = `mongodb+srv://${DB_USERNAME}:${password}@mern-mmamc.iobwd2h.mongodb.net/`;
+// const MONGO_URI = "mongodb+srv://Shailesh123:herohero@shaileshcluster.btqskgt.mongodb.net/";
+
+
+// IIFE
+(async () => {
+    try {
+        await mongoose.connect(MONGO_URI)
+        console.log("DB Connected Successfully")
+    } catch (err) {
+        console.log("DB Connection Error", err)
+    }
+})();
+
 const app = express();
 
 // middlewares
@@ -11,9 +32,8 @@ app.use(cors())
 app.use("/api", router)
 
 
-connectDB();
 
-const PORT = 8080;
+const PORT = 8000;
 app.listen(PORT, () => {
-    console.log("HEYA!! Server up and running at ", PORT)
+    console.log("Server is running on PORT", PORT)
 })

@@ -1,0 +1,11 @@
+import React from "react";
+
+function Card({ as: Element = "article", className = "", children, ...props }) {
+  return (
+    <Element className={className} {...props}>
+      {children}
+    </Element>
+  );
+}
+
+export default Card;
